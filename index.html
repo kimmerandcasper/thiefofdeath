@@ -25,8 +25,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: 2; /* Lower than title text */
-            animation: shrinkToLantern 0.25s ease 2; /* Updated duration to 0.25s */
+            z-index: 5;
+            animation: shrinkToLantern 0.25s ease 2;
         }
         @keyframes shrinkToLantern {
             0% { transform: scale(1); visibility: visible; }
@@ -47,19 +47,19 @@
             justify-content: center;
             margin: 20px 0;
             opacity: 0;
-            z-index: 3; /* Higher z-index to appear on top */
             position: absolute;
+            top: calc(50% - 60%); /* Adjusted to position the title at about 60% of the height of the lantern image */
             width: 100%;
-            top: 20%; /* Adjust top position as needed */
+            z-index: 3; /* Ensures the title is above the animation layer */
         }
         .title-image {
-            height: 50px;
+            height: 50px; /* Assuming the height of the lantern image for positioning calculations */
             margin-right: 10px;
             position: fixed; 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2; /* Same as animation layer */
+            z-index: 2;
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -83,8 +83,8 @@
     </style>
 </head>
 <body>
-    <div id="animation-layer"></div>
     <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> 
+    <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
