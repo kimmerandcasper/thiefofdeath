@@ -25,10 +25,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             animation: shrinkToLantern 3s ease forwards;
+            z-index: 2; /* Above the title and image but below the foreground animation */
         }
         @keyframes shrinkToLantern {
             0% { opacity: 1; transform: scale(1); }
@@ -41,19 +39,20 @@
             box-sizing: border-box;
             padding: 20px;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Base layer for text */
         }
         .title-container {
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 20px 0;
-            opacity: 0; /* Initially hidden */
+            opacity: 0; /* Initially hidden, becomes visible after animation */
         }
         .title-image {
             height: 50px;
             margin-right: 10px;
-            position: relative; /* Adjust positioning if needed */
+            position: relative;
+            z-index: 3; /* Ensure it's above the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -77,10 +76,10 @@
     </style>
 </head>
 <body>
-    <div id="animation-layer"></div>
+    <div id="animation-layer"></div> <!-- Violet light animation layer -->
     <div class="content">
         <div class="title-container">
-            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
+            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
