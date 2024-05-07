@@ -61,9 +61,20 @@
             transform: translate(-50%, -50%);
             z-index: 2;
         }
+        #coverImage {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.5); /* Added scale(0.5) to reduce size by 50% */
+    z-index: 6;
+    width: 80%;
+    max-width: 600px;
+}
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
             font-size: 28px;
+            top: 40%;
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
             transition: opacity 1s ease-out 3s;
