@@ -18,20 +18,20 @@
             overflow: hidden;
         }
         #animation-layer {
-        background: url('ViolentLight.png') no-repeat center center;
-        background-size: cover;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 5;
-        animation: shrinkToLantern 0.25s ease 2; /* Updated duration to 0.25s */
-    }
-    @keyframes shrinkToLantern {
-        0% { transform: scale(1); visibility: visible; }
-        100% { transform: scale(0); visibility: hidden; }
-    }
+            background: url('ViolentLight.png') no-repeat center center;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2; /* Lower than title text */
+            animation: shrinkToLantern 0.25s ease 2; /* Updated duration to 0.25s */
+        }
+        @keyframes shrinkToLantern {
+            0% { transform: scale(1); visibility: visible; }
+            100% { transform: scale(0); visibility: hidden; }
+        }
         .content {
             max-width: 600px;
             width: 100%;
@@ -47,6 +47,10 @@
             justify-content: center;
             margin: 20px 0;
             opacity: 0;
+            z-index: 3; /* Higher z-index to appear on top */
+            position: absolute;
+            width: 100%;
+            top: 20%; /* Adjust top position as needed */
         }
         .title-image {
             height: 50px;
@@ -55,7 +59,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2; /* Lower than the animation layer */
+            z-index: 2; /* Same as animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -79,8 +83,8 @@
     </style>
 </head>
 <body>
-    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> 
     <div id="animation-layer"></div>
+    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> 
     <div class="content">
         <div class="title-container">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
@@ -88,28 +92,28 @@
     </div>
     <script>
         window.addEventListener('load', function() {
-        setTimeout(function() {
-            document.querySelector('.title-container').style.opacity = 1;
-            let titleText = document.getElementById('titleText');
-            let fullText = titleText.textContent;
-            titleText.textContent = '';
-            let i = 0;
-            let interval = setInterval(function() {
-                if (i < fullText.length) {
-                    titleText.textContent += fullText.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 150); 
-        }, 3000);
+            setTimeout(function() {
+                document.querySelector('.title-container').style.opacity = 1;
+                let titleText = document.getElementById('titleText');
+                let fullText = titleText.textContent;
+                titleText.textContent = '';
+                let i = 0;
+                let interval = setInterval(function() {
+                    if (i < fullText.length) {
+                        titleText.textContent += fullText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 150); 
+            }, 3000);
 
-        // Add event listener to hide the animation layer after it completes
-        let animationLayer = document.getElementById('animation-layer');
-        animationLayer.addEventListener('animationend', function() {
-            animationLayer.style.display = 'none'; // Hide the layer after animation
+            // Add event listener to hide the animation layer after it completes
+            let animationLayer = document.getElementById('animation-layer');
+            animationLayer.addEventListener('animationend', function() {
+                animationLayer.style.display = 'none'; // Hide the layer after animation
+            });
         });
-    });
     </script>
 </body>
 </html>
