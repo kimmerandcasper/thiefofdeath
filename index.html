@@ -42,12 +42,17 @@
             z-index: 1;
         }
         .title-container {
-            display: flex;
-            top: 30%;
-            justify-content: center;
-            margin: 20px 0;
-            opacity: 0;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Ensure the container is positioned relative to the nearest positioned ancestor (body in this case) */
+    top: 10%; /* Move it up towards the top of the viewport */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally considering its width */
+    width: 100%; /* Optional: Ensures the text is centered in the viewport */
+    opacity: 0; /* Initially hidden, will be animated to fade in */
+    z-index: 10; /* Ensure it's above all other layers */
+}
         .title-image {
             height: 50px;
             margin-right: 10px;
