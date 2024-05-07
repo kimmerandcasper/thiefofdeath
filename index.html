@@ -43,6 +43,7 @@
             align-items: center;
             justify-content: center;
             margin: 20px 0;
+            visibility: hidden; /* Initially hide title */
         }
         .title-image {
             height: 50px;
@@ -53,6 +54,8 @@
             font-size: 28px;
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
+            opacity: 0; /* Initially hide text */
+            transition: opacity 1s ease-out 3s; /* Transition after animation */
         }
         hr {
             border: 0;
@@ -60,11 +63,6 @@
             background-color: white;
             margin: 20px auto;
             width: 80%;
-        }
-        .contact-info {
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
-            padding-bottom: 10px;
         }
         @media (max-width: 600px) {
             .mission-statement {
@@ -78,12 +76,29 @@
     <div class="content">
         <div class="title-container">
             <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
-            <div class="mission-statement">Alexandra Black and the Thief of Death</div>
+            <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
-        <div class="contact-info">
-            Contact Mouse Pup at <a href="mailto:mousepuptechnology@gmail.com">mousepuptechnology@gmail.com</a>
-        </div>
     </div>
+    <script>
+        // Animation delay then reveal title
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.title-container').style.visibility = 'visible';
+                let titleText = document.getElementById('titleText');
+                let fullText = titleText.textContent;
+                titleText.textContent = '';
+                let i = 0;
+                let interval = setInterval(function() {
+                    if (i < fullText.length) {
+                        titleText.textContent += fullText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 150); // Speed of writing
+            }, 3000); // Delay to match animation fade
+        });
+    </script>
 </body>
 </html>
