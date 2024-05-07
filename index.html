@@ -26,10 +26,9 @@
             right: 0;
             bottom: 0;
             animation: shrinkToLantern 3s ease forwards;
-            z-index: 2; /* Above the title and image but below the foreground animation */
         }
         @keyframes shrinkToLantern {
-            0% { opacity: 1; transform: scale(1); }
+            0% { opacity: 1; }
             100% { opacity: 0; transform: scale(0); visibility: hidden; }
         }
         .content {
@@ -39,20 +38,23 @@
             box-sizing: border-box;
             padding: 20px;
             position: relative;
-            z-index: 1; /* Base layer for text */
+            z-index: 1;
         }
         .title-container {
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 20px 0;
-            opacity: 0; /* Initially hidden, becomes visible after animation */
+            opacity: 0;
         }
         .title-image {
             height: 50px;
             margin-right: 10px;
-            position: relative;
-            z-index: 3; /* Ensure it's above the animation layer */
+            position: fixed; /* Ensure it's visible and independent */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3; /* Higher than the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -76,10 +78,10 @@
     </style>
 </head>
 <body>
-    <div id="animation-layer"></div> <!-- Violet light animation layer -->
+    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> <!-- Lantern visible independently -->
+    <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
-            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
@@ -100,7 +102,8 @@
                         clearInterval(interval);
                     }
                 }, 150); // Speed of writing
-            }, 3000); // Delay to match animation fade
+            }, 3000);
+ // Delay to match animation fade
         });
     </script>
 </body>
