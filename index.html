@@ -18,20 +18,20 @@
             overflow: hidden;
         }
         #animation-layer {
-            background: url('ViolentLight.png') no-repeat center center;
-            background-size: cover;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 5;
-            animation: shrinkToLantern 0.25s ease 2;
-        }
-        @keyframes shrinkToLantern {
-            0% { transform: scale(1); visibility: visible; }
-            100% { transform: scale(0); visibility: hidden; }
-        }
+        background: url('ViolentLight.png') no-repeat center center;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        animation: shrinkToLantern 0.25s ease 2; /* Updated duration to 0.25s */
+    }
+    @keyframes shrinkToLantern {
+        0% { transform: scale(1); visibility: visible; }
+        100% { transform: scale(0); visibility: hidden; }
+    }
         .content {
             max-width: 600px;
             width: 100%;
@@ -47,19 +47,15 @@
             justify-content: center;
             margin: 20px 0;
             opacity: 0;
-            position: absolute;
-            top: calc(50% - 60%); /* Adjusted to position the title at about 60% of the height of the lantern image */
-            width: 100%;
-            z-index: 3; /* Ensures the title is above the animation layer */
         }
         .title-image {
-            height: 50px; /* Assuming the height of the lantern image for positioning calculations */
+            height: 50px;
             margin-right: 10px;
             position: fixed; 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2;
+            z-index: 2; /* Lower than the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -92,28 +88,28 @@
     </div>
     <script>
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.querySelector('.title-container').style.opacity = 1;
-                let titleText = document.getElementById('titleText');
-                let fullText = titleText.textContent;
-                titleText.textContent = '';
-                let i = 0;
-                let interval = setInterval(function() {
-                    if (i < fullText.length) {
-                        titleText.textContent += fullText.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 150); 
-            }, 3000);
+        setTimeout(function() {
+            document.querySelector('.title-container').style.opacity = 1;
+            let titleText = document.getElementById('titleText');
+            let fullText = titleText.textContent;
+            titleText.textContent = '';
+            let i = 0;
+            let interval = setInterval(function() {
+                if (i < fullText.length) {
+                    titleText.textContent += fullText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 150); 
+        }, 3000);
 
-            // Add event listener to hide the animation layer after it completes
-            let animationLayer = document.getElementById('animation-layer');
-            animationLayer.addEventListener('animationend', function() {
-                animationLayer.style.display = 'none'; // Hide the layer after animation
-            });
+        // Add event listener to hide the animation layer after it completes
+        let animationLayer = document.getElementById('animation-layer');
+        animationLayer.addEventListener('animationend', function() {
+            animationLayer.style.display = 'none'; // Hide the layer after animation
         });
+    });
     </script>
 </body>
 </html>
