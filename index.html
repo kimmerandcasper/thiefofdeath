@@ -25,6 +25,7 @@
             left: 0;
             right: 0;
             bottom: 0;
+            z-index: 5;  /* Increased z-index */
             animation: shrinkToLantern 3s ease forwards;
         }
         @keyframes shrinkToLantern {
@@ -50,11 +51,11 @@
         .title-image {
             height: 50px;
             margin-right: 10px;
-            position: fixed; /* Ensure it's visible and independent */
+            position: fixed; 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 3; /* Higher than the animation layer */
+            z-index: 2; /* Lower than the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -78,13 +79,12 @@
     </style>
 </head>
 <body>
-    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> <!-- Lantern visible independently -->
+    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> 
     <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
-        <hr>
     </div>
     <script>
         window.addEventListener('load', function() {
@@ -101,9 +101,8 @@
                     } else {
                         clearInterval(interval);
                     }
-                }, 150); // Speed of writing
+                }, 150); 
             }, 3000);
- // Delay to match animation fade
         });
     </script>
 </body>
