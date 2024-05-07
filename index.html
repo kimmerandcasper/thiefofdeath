@@ -18,7 +18,8 @@
             overflow: hidden;
         }
         #animation-layer {
-            background: violet;
+            background: url('ViolentLight.png') no-repeat center center;
+            background-size: cover;
             position: fixed;
             top: 0;
             left: 0;
@@ -30,7 +31,7 @@
             animation: shrinkToLantern 3s ease forwards;
         }
         @keyframes shrinkToLantern {
-            0% { opacity: 1; }
+            0% { opacity: 1; transform: scale(1); }
             100% { opacity: 0; transform: scale(0); visibility: hidden; }
         }
         .content {
@@ -47,17 +48,18 @@
             align-items: center;
             justify-content: center;
             margin: 20px 0;
+            opacity: 0; /* Initially hidden */
         }
         .title-image {
             height: 50px;
             margin-right: 10px;
+            position: relative; /* Adjust positioning if needed */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
             font-size: 28px;
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
-            opacity: 0;
             transition: opacity 1s ease-out 3s;
         }
         hr {
@@ -78,7 +80,7 @@
     <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
-            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: relative; top: 0;">
+            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
@@ -86,7 +88,7 @@
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
-                document.querySelector('.title-container').style.visibility = 'visible';
+                document.querySelector('.title-container').style.opacity = 1;
                 let titleText = document.getElementById('titleText');
                 let fullText = titleText.textContent;
                 titleText.textContent = '';
@@ -98,8 +100,8 @@
                     } else {
                         clearInterval(interval);
                     }
-                }, 150);
-            }, 3000);
+                }, 150); // Speed of writing
+            }, 3000); // Delay to match animation fade
         });
     </script>
 </body>
