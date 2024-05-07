@@ -13,6 +13,7 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             overflow: hidden;
         }
@@ -23,13 +24,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            animation: shrinkToLantern 3s ease forwards;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: shrinkToLantern 3s ease forwards;
         }
         @keyframes shrinkToLantern {
-            0% { opacity: 1; transform: scale(1); }
+            0% { opacity: 1; }
             100% { opacity: 0; transform: scale(0); visibility: hidden; }
         }
         .content {
@@ -38,8 +39,8 @@
             text-align: center;
             box-sizing: border-box;
             padding: 20px;
-            z-index: 1; /* Ensure it is below animation layer */
             position: relative;
+            z-index: 1;
         }
         .title-container {
             display: flex;
@@ -50,15 +51,14 @@
         .title-image {
             height: 50px;
             margin-right: 10px;
-            z-index: 10; /* Make sure image is above the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
             font-size: 28px;
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
-            opacity: 0; /* Initially hide text */
-            transition: opacity 1s ease-out 3s; /* Appear after animation */
+            opacity: 0;
+            transition: opacity 1s ease-out 3s;
         }
         hr {
             border: 0;
@@ -75,14 +75,10 @@
     </style>
 </head>
 <body>
-    <div id="animation-layer">
-        <!-- Adding the lantern image here to keep it visible -->
-        <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 100px;">
-    </div>
+    <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
-            <!-- Lantern image also in title for layout -->
-            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
+            <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: relative; top: 0;">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
@@ -102,8 +98,8 @@
                     } else {
                         clearInterval(interval);
                     }
-                }, 150); // Speed of writing
-            }, 3000); // Delay to match animation fade
+                }, 150);
+            }, 3000);
         });
     </script>
 </body>
