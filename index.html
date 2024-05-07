@@ -13,24 +13,25 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             overflow: hidden;
         }
         #animation-layer {
-        background: url('ViolentLight.png') no-repeat center center;
-        background-size: cover;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 5;
-        animation: shrinkToLantern 0.25s ease 2; /* Updated duration to 0.25s */
-    }
-    @keyframes shrinkToLantern {
-        0% { transform: scale(1); visibility: visible; }
-        100% { transform: scale(0); visibility: hidden; }
-    }
+            background: url('ViolentLight.png') no-repeat center center;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            animation: shrinkToLantern 0.25s ease 2;
+        }
+        @keyframes shrinkToLantern {
+            0% { transform: scale(1); visibility: visible; }
+            100% { transform: scale(0); visibility: hidden; }
+        }
         .content {
             max-width: 600px;
             width: 100%;
@@ -41,30 +42,28 @@
             z-index: 1;
         }
         .title-container {
-    display: flex;
-    justify-content: center;
-    position: absolute; /* Ensure the container is positioned relative to the nearest positioned ancestor (body in this case) */
-    top: 40%; /* Move it to the very top of the viewport */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally considering its width */
-    width: 100%; /* Ensures the text is centered in the viewport */
-    opacity: 0; /* Initially hidden, will be animated to fade in */
-    z-index: 10; /* Ensure it's above all other layers */
-}
-
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            opacity: 0;
+            z-index: 10;
+        }
         .title-image {
             height: 50px;
             margin-right: 10px;
-            position: fixed; 
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2; /* Lower than the animation layer */
+            z-index: 2;
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
             font-size: 28px;
-            top: 40%;
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
             transition: opacity 1s ease-out 3s;
@@ -84,8 +83,9 @@
     </style>
 </head>
 <body>
-    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image"> 
+    <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
     <div id="animation-layer"></div>
+    <img src="ABTOD.png" alt="Cover Image" id="coverImage" style="display: none; position: absolute; top: 10%; left: 50%; transform: translateX(-50%); z-index: 6; width: 80%; max-width: 600px;">
     <div class="content">
         <div class="title-container">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
@@ -93,28 +93,30 @@
     </div>
     <script>
         window.addEventListener('load', function() {
-        setTimeout(function() {
-            document.querySelector('.title-container').style.opacity = 1;
-            let titleText = document.getElementById('titleText');
-            let fullText = titleText.textContent;
-            titleText.textContent = '';
-            let i = 0;
-            let interval = setInterval(function() {
-                if (i < fullText.length) {
-                    titleText.textContent += fullText.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 150); 
-        }, 3000);
+            setTimeout(function() {
+                document.querySelector('.title-container').style.opacity = 1;
+                let titleText = document.getElementById('titleText');
+                let fullText = titleText.textContent;
+                titleText.textContent = '';
+                let i = 0;
+                let interval = setInterval(function() {
+                    if (i < fullText.length) {
+                        titleText.textContent += fullText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                        // Show the image after the title is fully displayed
+                        document.getElementById('coverImage').style.display = 'block';
+                    }
+                }, 150); 
+            }, 3000);
 
-        // Add event listener to hide the animation layer after it completes
-        let animationLayer = document.getElementById('animation-layer');
-        animationLayer.addEventListener('animationend', function() {
-            animationLayer.style.display = 'none'; // Hide the layer after animation
+            // Optional: Hide the animation layer after it completes
+            let animationLayer = document.getElementById('animation-layer');
+            animationLayer.addEventListener('animationend', function() {
+                animationLayer.style.display = 'none'; // Hide the layer after animation
+            });
         });
-    });
     </script>
 </body>
 </html>
