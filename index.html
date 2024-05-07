@@ -23,11 +23,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            animation: fadeOutAnimation 3s ease forwards;
+            animation: shrinkToLantern 3s ease forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        @keyframes fadeOutAnimation {
-            0% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
+        @keyframes shrinkToLantern {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); visibility: hidden; }
         }
         .content {
             max-width: 600px;
@@ -35,7 +38,7 @@
             text-align: center;
             box-sizing: border-box;
             padding: 20px;
-            z-index: 10;
+            z-index: 1; /* Ensure it is below animation layer */
             position: relative;
         }
         .title-container {
@@ -43,11 +46,11 @@
             align-items: center;
             justify-content: center;
             margin: 20px 0;
-            visibility: hidden; /* Initially hide title */
         }
         .title-image {
             height: 50px;
             margin-right: 10px;
+            z-index: 10; /* Make sure image is above the animation layer */
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
@@ -55,7 +58,7 @@
             color: #DDA0DD;
             text-shadow: 2px 2px 4px #000000;
             opacity: 0; /* Initially hide text */
-            transition: opacity 1s ease-out 3s; /* Transition after animation */
+            transition: opacity 1s ease-out 3s; /* Appear after animation */
         }
         hr {
             border: 0;
@@ -72,16 +75,19 @@
     </style>
 </head>
 <body>
-    <div id="animation-layer"></div>
+    <div id="animation-layer">
+        <!-- Adding the lantern image here to keep it visible -->
+        <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 100px;">
+    </div>
     <div class="content">
         <div class="title-container">
+            <!-- Lantern image also in title for layout -->
             <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
             <div class="mission-statement" id="titleText">Alexandra Black and the Thief of Death</div>
         </div>
         <hr>
     </div>
     <script>
-        // Animation delay then reveal title
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.querySelector('.title-container').style.visibility = 'visible';
