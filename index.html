@@ -17,13 +17,11 @@
         .content {
             max-width: 600px;
             width: 100%;
-            text-align: left;
+            text-align: center; /* Center aligning text for grandeur */
             box-sizing: border-box;
         }
         img.logo {
-            display: block;
-            width: 80%;
-            margin: 15px auto;
+            display: none; /* Removed as it's not used */
         }
         .title-container {
             display: flex;
@@ -32,43 +30,36 @@
             margin: 20px 0;
         }
         .title-image {
-            height: 50px; /* Adjust size as needed */
-            margin-right: 10px; /* Space between image and text */
+            height: 50px; 
+            margin-right: 10px;
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
-            font-size: 24px;
-            text-align: center;
+            font-size: 28px; /* Increased font size for emphasis */
             color: #DDA0DD; /* Neon purple color */
+            text-shadow: 2px 2px 4px #000000; /* Text shadow for depth */
         }
         hr {
             border: 0;
             height: 1px;
             background-color: white;
             margin: 20px auto;
-            width: 100%;
+            width: 80%; /* Slightly reduced for style */
         }
         .contact-info {
             font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            text-align: left;
+            font-size: 16px; /* Slightly larger for better readability */
             padding-bottom: 10px;
-            color: white; /* Ensuring text is white for readability on black background */
         }
         @media (max-width: 600px) {
-            .content, .contact-info {
-                font-size: 14px;
-                padding: 10px;
-            }
             .mission-statement {
-                font-size: 20px; /* Smaller font size for mobile devices */
+                font-size: 24px; /* Adjusting for smaller screens */
             }
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <img src="MousePupLogo.png" alt="Mouse Pup Logo" class="logo">
         <div class="title-container">
             <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
             <div class="mission-statement">Alexandra Black and the Thief of Death</div>
