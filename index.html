@@ -10,18 +10,33 @@
             color: white;
             background-color: black;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #animation-layer {
+            background: violet;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            animation: fadeOutAnimation 3s ease forwards;
+        }
+        @keyframes fadeOutAnimation {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
         }
         .content {
             max-width: 600px;
             width: 100%;
-            text-align: center; /* Center aligning text for grandeur */
+            text-align: center;
             box-sizing: border-box;
-        }
-        img.logo {
-            display: none; /* Removed as it's not used */
+            padding: 20px;
+            z-index: 10;
+            position: relative;
         }
         .title-container {
             display: flex;
@@ -30,35 +45,36 @@
             margin: 20px 0;
         }
         .title-image {
-            height: 50px; 
+            height: 50px;
             margin-right: 10px;
         }
         .mission-statement {
             font-family: 'Brush Script MT', cursive;
-            font-size: 28px; /* Increased font size for emphasis */
-            color: #DDA0DD; /* Neon purple color */
-            text-shadow: 2px 2px 4px #000000; /* Text shadow for depth */
+            font-size: 28px;
+            color: #DDA0DD;
+            text-shadow: 2px 2px 4px #000000;
         }
         hr {
             border: 0;
             height: 1px;
             background-color: white;
             margin: 20px auto;
-            width: 80%; /* Slightly reduced for style */
+            width: 80%;
         }
         .contact-info {
             font-family: 'Arial', sans-serif;
-            font-size: 16px; /* Slightly larger for better readability */
+            font-size: 16px;
             padding-bottom: 10px;
         }
         @media (max-width: 600px) {
             .mission-statement {
-                font-size: 24px; /* Adjusting for smaller screens */
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
+    <div id="animation-layer"></div>
     <div class="content">
         <div class="title-container">
             <img src="WickedLantern.png" alt="Wicked Lantern" class="title-image">
