@@ -18,20 +18,20 @@
             overflow: hidden;
         }
         #animation-layer {
-            background: url('ViolentLight.png') no-repeat center center;
-            background-size: cover;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 5;  /* Increased z-index */
-            animation: shrinkToLantern 0.2s ease forwards;
+        background: url('ViolentLight.png') no-repeat center center;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        animation: shrinkToLantern 0.5s ease 2;
         }
-        @keyframes shrinkToLantern {
+    @keyframes shrinkToLantern {
         0% { transform: scale(1); visibility: visible; }
         100% { transform: scale(0); visibility: hidden; }
-        }
+    }
         .content {
             max-width: 600px;
             width: 100%;
